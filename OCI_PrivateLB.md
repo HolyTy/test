@@ -17,7 +17,8 @@ CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterp
 プライベートIPアドレスは、他のインスタンスとの通信が可能となり、データ転送用経路として使用します。  
 
 ```
-<構成図>
+<構成図>  
+![PrivateLB](https://user-images.githubusercontent.com/52775132/61612268-0546a380-ac99-11e9-8ab5-6a9442de17f6.png)
 ```
 
 ### 使用ソフトウェア
