@@ -55,7 +55,8 @@ Oracle Cloud setup
 1. Configure the Block Volumes
    - Configure the Block Volumes of 2 nodes
 1. Attach Block Volumes to instance.
-   - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
+   - In the case of Linux
+      - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
    - Attach by iscsi command.
 1. Configure the Load Balancer
    - Select Private from the "VISIBLTY TYPE"
