@@ -33,10 +33,16 @@ if your environment use private IP address, it becomes possible to communicate f
   - mirror disk resource
   - Azure probe port resource
 - Monitor resource
-  - mirror connect monitor resource
-  - mirror disk monitor resource
-  - Azure probe port monitor resource
-  - Azure load balance monitor resource
+   - In the case of Linux
+     - mirror disk connect monitor resource
+     - mirror disk monitor resource
+     - Azure probe port monitor resource
+     - Azure load balance monitor resource
+   - In the case of Windows
+     - mirror connect monitor resource
+     - mirror disk monitor resource
+     - Azure probe port monitor resource
+     - Azure load balance monitor resource
 
 Oracle Cloud setup
 ---
