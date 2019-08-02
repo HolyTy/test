@@ -4,7 +4,7 @@ Oracle Cloud Infrastructure (by internal load balancer)
 About this guide
 ---
 This guide describes how to setup EXPRESSCLUSTER of the mirror disk type cluster on Oracle Cloud Infrastructure.  
-The following describes the cluster configuration by internal load balancer.  
+The following describes the cluster configuration by public load balancer.  
 For the detailed information of EXPRESSCLUSTER X, please refer to [this site](https://www.nec.com/en/global/prod/expresscluster/index.html).  
 
 Configuration
