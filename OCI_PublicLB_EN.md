@@ -22,7 +22,7 @@ if your environment use private IP address, it becomes possible to communicate f
     or
     Cent OS 7.6 (3.10.0-957.12.2.el7.x86_64)
   - EXPRESSCLUSTER X 4.1 for Linux (internal version：4.1.1-1)
-- in the case of Windows
+- In the case of Windows
   - Windows Server 2016 Standard
   - EXPRESSCLUSTER X 4.1 for Windows (internal version：12.11)
 
@@ -30,7 +30,7 @@ if your environment use private IP address, it becomes possible to communicate f
 - Group resources
   - mirror disk resource
   - Azure probe port resource
-- Monitor resource
+- Monitor resources
    - In the case of Linux
      - mirror disk connect monitor resource
      - mirror disk monitor resource
