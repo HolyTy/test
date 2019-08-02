@@ -1,4 +1,4 @@
-Oracle Cloud Infrastructure (by internal load balancer)
+Oracle Cloud Infrastructure (by public load balancer)
 ===
 
 About this guide
