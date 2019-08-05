@@ -16,7 +16,7 @@ CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterp
 クライアントアプリケーションは、ロードバランサのIPアドレスを指定することで、仮想クラウド・ネットワーク(VCN)内のインスタンスにアクセスすることが可能となります。  
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/52775132/62444662-1c0cf000-b799-11e9-9da8-6883759079b5.png">
+<img src="https://user-images.githubusercontent.com/52775132/62447428-4c0bc180-b7a0-11e9-92c6-a95233739474.png">
 </div>
 
 ### 使用ソフトウェア
