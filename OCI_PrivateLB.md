@@ -3,7 +3,7 @@ Oracle Cloud クラスタ (プライベートロードバランサ使用)
 
 はじめに
 ---
-本ガイドでは、Oracle Cloud の Computeインスタンス により、Linux/Windowsのミラーディスク型クラスタを構築する手順について説明します。
+本ガイドでは、Oracle Cloud の Computeインスタンス を使用した、CLUSTERPRO X for Linux/Windows のミラーディスク型クラスタを構築する手順について説明します。
 以下ではプライベートロードバランサを用いたクラスタ構成について説明します。
 
 CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterpro/clpx/index.html)をご参照ください。
@@ -11,7 +11,7 @@ CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterp
 
 構成
 ---
-本構成では、2node構成のミラーディスク型クラスタ(以下 Node1 / Node2) を構築し、障害発生時にはBlock Storageのデータを、他ノードに引き継ぎます。  
+本構成では、2node構成のミラーディスク型クラスタ(以下 Node1 / Node2) を構築し、Block Storageのデータはノード間で同期します。  
 また、クラスタの現用系と待機系は、Oracle Cloud が提供するロードバランサーにおけるヘルス・チェックを利用して切り替えます。  
 クライアントアプリケーションは、ロードバランサのIPアドレスを指定することで、仮想クラウド・ネットワーク(VCN)内のインスタンスにアクセスすることが可能となります。  
 
