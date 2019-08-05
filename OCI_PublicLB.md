@@ -3,7 +3,7 @@ Oracle Cloud クラスタ (パブリックロードバランサ使用)
 
 はじめに
 ---
-本ガイドでは、Oracle Cloud の Computeインスタンス により、Linux/Windowsのミラーディスク型クラスタを構築する手順について説明します。
+本ガイドでは、Oracle Cloud の Compute インスタンス により、Linux/Windowsのミラーディスク型クラスタを構築する手順について説明します。
 以下ではパブリックロードバランサを用いたクラスタ構成について説明します。
 
 CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterpro/clpx/index.html)をご参照ください。
@@ -16,7 +16,7 @@ CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterp
 クライアントアプリケーションは、ロードバランサのIPアドレスを指定することで、仮想クラウド・ネットワーク(VCN)内のインスタンスにアクセスすることが可能となります。    
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/52775132/62445247-be79a300-b79a-11e9-82a1-fed4e00e42a9.png">
+<img src="https://user-images.githubusercontent.com/52775132/62447475-68a7f980-b7a0-11e9-9683-19133c4eabdd.png">
 </div>
 
 
