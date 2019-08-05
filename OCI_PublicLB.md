@@ -11,10 +11,11 @@ CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterp
 
 構成
 ---
-<構成の概要文>
-```
-<構成図>
-```
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/52775132/62445247-be79a300-b79a-11e9-82a1-fed4e00e42a9.png">
+</div>
+
 
 ### 使用ソフトウェア
 - Linuxの場合
