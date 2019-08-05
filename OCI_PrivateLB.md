@@ -3,7 +3,7 @@ Oracle Cloud クラスタ (プライベートロードバランサ使用)
 
 はじめに
 ---
-本ガイドでは、Oracle Cloud の Computeインスタンス を使用した、CLUSTERPRO X for Linux/Windows のミラーディスク型クラスタを構築する手順について説明します。
+本ガイドでは、Oracle Cloud の Computeインスタンス を使用した、CLUSTERPRO X for Linux/Windows のミラーディスク型クラスタを構築する手順について説明します。  
 以下ではプライベートロードバランサを用いたクラスタ構成について説明します。
 
 CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterpro/clpx/index.html)をご参照ください。
