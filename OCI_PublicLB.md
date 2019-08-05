@@ -11,6 +11,9 @@ CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterp
 
 構成
 ---
+本構成では、2node構成のミラーディスク型クラスタ(以下 Node1 / Node2) を構築し、障害発生時にはBlock Storageのデータを、他ノードに引き継ぎます。  
+また、クラスタの現用系と待機系は、Oracle Cloud が提供するロードバランサーにおけるヘルス・チェックを利用して切り替えます。  
+クライアントアプリケーションは、ロードバランサのIPアドレスを指定することで、仮想クラウド・ネットワーク(VCN)内のインスタンスにアクセスすることが可能となります。    
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/52775132/62445247-be79a300-b79a-11e9-82a1-fed4e00e42a9.png">
