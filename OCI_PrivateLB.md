@@ -15,8 +15,9 @@ CLUSTERPRO X の詳細については、[こちら](https://jpn.nec.com/clusterp
 また、クラスタの現用系と待機系は、Oracle Cloud が提供するロードバランサーにおけるヘルス・チェックを利用して切り替えます。  
 クライアントアプリケーションは、ロードバランサのIPアドレスを指定することで、仮想クラウド・ネットワーク(VCN)内のインスタンスにアクセスすることが可能となります。  
 
-![privateLB](https://user-images.githubusercontent.com/52775132/62444662-1c0cf000-b799-11e9-9da8-6883759079b5.png)
-
+<div align="center">
+<img src="https://user-images.githubusercontent.com/52775132/62444662-1c0cf000-b799-11e9-9da8-6883759079b5.png">
+</div>
 
 ### 使用ソフトウェア
 - Linuxの場合
