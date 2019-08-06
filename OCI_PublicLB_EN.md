@@ -15,10 +15,6 @@ And the date on block storage synchronize between nodes.
 And active and standby servers of the cluster are swiched by controlling the Oracle Cloud Infrastructure load balancer from EXPRESSCLUSTER.  
 Client Applications will be accessible instance in the virtual cloud network if you specify Load balancer IP address.  
 
-<div align="center">
-<img src="https://user-images.githubusercontent.com/52775132/62447475-68a7f980-b7a0-11e9-9683-19133c4eabdd.png">
-</div>
-
 ### Software versions
 - In the case of Linux
   - Cent OS 6.10 (2.6.32-754.14.2.el6.x86_64)
@@ -194,7 +190,7 @@ Other parameters than below, default value is setting.
                  exit 0
                  fi
      
-                 /opt/nec/clusterpro/bin/clpazure_port_checker -h <ロードバランサーのフロントエンドIP(パブリックIP アドレス)> -p 80
+                 /opt/nec/clusterpro/bin/clpazure_port_checker -h <IP address set to load balancer> -p 80
                  if [ $? -ne 0 ]
                  then
                  clpdown
@@ -213,7 +209,7 @@ Other parameters than below, default value is setting.
                   rem ********************
                   rem Check DNS
                   rem ********************
-                  "C:\Program Files\EXPRESSCLUSTER\bin\clpazure_port_checker" -h <ロードバランサーのフロントエンドIP(パブリックIP アドレス)> -p 80
+                  "C:\Program Files\EXPRESSCLUSTER\bin\clpazure_port_checker" -h <IP address set to load balancer> -p 80
                   IF "%ERRORLEVEL%" == "0" (
                   GOTO EXIT
                   )
