@@ -3,7 +3,7 @@ Oracle Cloud Infrastructure (by internal load balancer)
 
 About this guide
 ---
-This guide describes how to setup EXPRESSCLUSTER of the mirror disk type cluster on Oracle Cloud Infrastructure.  
+This guide describes how to setup EXPRESSCLUSTER X of the mirror disk type cluster on Oracle Cloud Infrastructure.  
 The following describes the cluster configuration by internal load balancer.  
 For the detailed information of EXPRESSCLUSTER X, please refer to [this site](https://www.nec.com/en/global/prod/expresscluster/index.html).  
 
@@ -11,10 +11,9 @@ Configuration
 ---
 ### Overview
 In the configuration of this guide, create 2-server(Node1 Node2 as below) cluster of mirror disk type.  
-If a failure has occurred, the data on block storage is taken over to the other server.  
+And the date on block storage synchronize between nodes.  
 And active and standby servers of the cluster are swiched by controlling the Oracle Cloud Infrastructure load balancer from EXPRESSCLUSTER.  
-Client Applications can use public IP address to access instance in the virtual cloud network.  
-if your environment use private IP address, it becomes possible to communicate from Node1 to Node2 and this network use data transfer.  
+Client Applications will be accessible instance in the virtual cloud network if you specify Load balancer IP address.  
 
 ### Software versions
 - In the case of Linux
@@ -22,7 +21,7 @@ if your environment use private IP address, it becomes possible to communicate f
     or
     Cent OS 7.6 (3.10.0-957.12.2.el7.x86_64)
   - EXPRESSCLUSTER X 4.1 for Linux (internal version：4.1.1-1)
-- in the case of Windows
+- In the case of Windows
   - Windows Server 2016 Standard
   - EXPRESSCLUSTER X 4.1 for Windows (internal version：12.11)
 
@@ -32,7 +31,7 @@ if your environment use private IP address, it becomes possible to communicate f
 - Group resources
   - mirror disk resource
   - Azure probe port resource
-- Monitor resource
+- Monitor resources
    - In the case of Linux
      - mirror disk connect monitor resource
      - mirror disk monitor resource
@@ -61,11 +60,10 @@ Oracle Cloud setup
 1. Configure the Block Volumes
    - Configure the Block Volumes of 2 nodes
 1. Attach Block Volumes to instance.
-   - In the case of Linux
-      - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
+   - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
    - Attach by iscsi command.
 1. Configure the Load Balancer
-   - Select Private from the "VISIBLTY TYPE"
+   - CHOOSE VISIBILITY TYPE:Private	
    - Skip the "Choose Backends"
    - Configure the Update Health Check
      - PROTOCOL：TCP
@@ -126,10 +124,10 @@ Other parameters than below, default value is setting.
       - Cluster Partition Drive Letter：D:\
       - Mirror Disk Connect：mdc1
       - Servers that can run the group：Node1, Node2
-1. Configure Azure probe port resource
+1. Configure the Azure probe port resource
    - Details
      - Probeport：26001
-1. Configure monitor resources
+1. Configure the monitor resources
    - The following that monitor resource is automatically registered when setting group resouces.
    - In the case of Linux
      - mirror disk connect monitor resource
