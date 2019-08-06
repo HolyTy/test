@@ -15,6 +15,10 @@ And the date on block storage synchronize between nodes.
 And active and standby servers of the cluster are swiched by controlling the Oracle Cloud Infrastructure load balancer from EXPRESSCLUSTER.  
 Client Applications will be accessible instance in the virtual cloud network if you specify Load balancer IP address.  
 
+<div align="center">
+<img src="https://user-images.githubusercontent.com/52775132/62447428-4c0bc180-b7a0-11e9-92c6-a95233739474.png">
+</div>
+
 ### Software versions
 - In the case of Linux
   - Cent OS 6.10 (2.6.32-754.14.2.el6.x86_64)
