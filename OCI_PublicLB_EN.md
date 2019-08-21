@@ -40,7 +40,7 @@ Client Applications will be accessible instance in the virtual cloud network if 
   - Azure load balance monitor resource
   - custom monitor resource (*)
   - IP monitor resources (*)
-  - multi target monitor resource (*)
+  - multi target monitor resource (*)  
      \* These Monitor resources are required instead of network partition resource
 - HeartBeat resources
   - kernel mode LAN heartbeat resource
