@@ -34,26 +34,20 @@ Client Applications will be accessible instance in the virtual cloud network if 
   - mirror disk resource
   - Azure probe port resource
 - Monitor resource
-   - In the case of Linux
-     - mirror disk connect monitor resource
-     - mirror disk monitor resource
-     - Azure probe port monitor resource
-     - Azure load balance monitor resource
-     - custom monitor resource (by network partition resource)
-     - IP monitor resources (by network partition resource)
-     - multi target monitor resource (by network partition resource)
-   - In the case of Windows
-     - mirror connect monitor resource
-     - mirror disk monitor resource
-     - Azure probe port monitor resource
-     - Azure load balance monitor resource
-     - custom monitor resource (by network partition resource)
-     - IP monitor resources (by network partition resource)
-     - multi target monitor resource (by network partition resource)
+  - mirror disk connect monitor resource
+  - mirror disk monitor resource
+  - Azure probe port monitor resource
+  - Azure load balance monitor resource
+  - custom monitor resource (*)
+  - IP monitor resources (*)
+  - multi target monitor resource (*)
+     \* These Monitor resources are required instead of network partition resource
+- HeartBeat resources
+  - kernel mode LAN heartbeat resource
 
 Oracle Cloud setup
 ---
-1. Configure the Instances
+1. Create Instances
    - Separate the fault domain by Advanced Options
      - Node1
         - availability domain：AD 1 (oIJw:AP-TOKYO-1-AD-1) 
@@ -65,15 +59,16 @@ Oracle Cloud setup
         - fault domain：FAULT-DOMAIN-2
         - public IP address：10.0.0.9
         - private IP address：10.0.10.9
-1. Configure the Block Volumes
-   - Configure the Block Volumes of 2 nodes
+1. Create Block Volumes
+   - Create Block Volumes of 2 nodes
 1. Attach Block Volumes to instance.
-   - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
+   - In the case of Linux (It will not be necessary for Windows)
+      - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
    - Attach by iscsi command.
-1. Configure the Load Balancer
+1. Create Load Balancer and set as the below
    - CHOOSE VISIBILITY TYPE : Public
    - CHOOSE NETWORKING : by public subnet
-   - Configure the Choose Backends
+   - Configure Choose Backends
      - SELECT BACKEND SERVERS : Add 2-server(Node1, Node2)
        - Port : 8080 ( provide application's port in instance side )
    - Configure the Update Health Check
@@ -85,7 +80,7 @@ Oracle Cloud setup
    - Configure the Listener
      - PROTOCOL：TCP
      - PORT：80 ( provide application's port in internet side )
-1. if you need security list, configure the security list.
+1. if you need Security List, configure the Security List.
 
 Setup EXPRESSCLUSTER X
 ---
