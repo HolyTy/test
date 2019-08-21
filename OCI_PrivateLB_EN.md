@@ -30,26 +30,22 @@ Client Applications will be accessible instance in the virtual cloud network if 
   - EXPRESSCLUSTER X 4.1 for Windows (internal version：12.11)
 
 ### Cluster configurations
-- Network partition resolution resource
-  - network partition resolution resource by PING method
 - Group resources
   - mirror disk resource
   - Azure probe port resource
 - Monitor resources
-   - In the case of Linux
      - mirror disk connect monitor resource
      - mirror disk monitor resource
      - Azure probe port monitor resource
      - Azure load balance monitor resource
-   - In the case of Windows
-     - mirror connect monitor resource
-     - mirror disk monitor resource
-     - Azure probe port monitor resource
-     - Azure load balance monitor resource
+- Network partition resolution resource
+  - network partition resolution resource by PING method
+- HeartBeat resources
+  - kernel mode LAN heartbeat resource
 
 Oracle Cloud setup
 ---
-1. Configure the Instances
+1. Create Instances
    - Separate the fault domain by Advanced Options
      - Node1
         - availability domain：AD 1 (oIJw:AP-TOKYO-1-AD-1) 
@@ -61,15 +57,15 @@ Oracle Cloud setup
         - fault domain：FAULT-DOMAIN-2
         - public IP address：10.0.0.9
         - private IP address：10.0.10.9
-1. Configure the Block Volumes
-   - Configure the Block Volumes of 2 nodes
+1. Create Block Volumes
+   - Create Block Volumes of 2 nodes
 1. Attach Block Volumes to instance.
-   - In the case of Linux
+   - In the case of Linux (It will not be necessary for Windows)
      - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
    - Attach by iscsi command.
-1. Configure the Load Balancer
+1. Create Load Balancer
    - CHOOSE VISIBILITY TYPE : Private	
-   - Skip the "Choose Backends"
+   - Skip "Choose Backends"
    - Configure the Update Health Check
      - PROTOCOL：TCP
      - PORT：26001
@@ -123,7 +119,7 @@ Other parameters than below, default value is setting.
       - Data Partition Device Name：/dev/oracleoci/oraclevdb2
       - Cluster Partition Device Name：/dev/oracleoci/oraclevdb1
       - File System：ext4
-  - In the case of Windows	
+  - In the case of Windows
     - Details
       - Date Partition Drive Letter：E:\
       - Cluster Partition Drive Letter：D:\
