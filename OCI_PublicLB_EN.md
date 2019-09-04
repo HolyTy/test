@@ -3,17 +3,16 @@ Oracle Cloud Infrastructure (by public load balancer)
 
 About this guide
 ---
-This guide describes how to setup EXPRESSCLUSTER X of the mirror disk type cluster on Oracle Cloud Infrastructure.  
-The following describes the cluster configuration by public load balancer.  
+This guide describes how to setup EXPRESSCLUSTER X mirror disk type cluster on Oracle Cloud Infrastructure with public load balancer.  
 For the detailed information of EXPRESSCLUSTER X, please refer to [this site](https://www.nec.com/en/global/prod/expresscluster/index.html).  
 
 Configuration
 ---
 ### Overview
-In the configuration of this guide, create 2-server(Node1 Node2 as below) cluster of mirror disk type.  
-And the date on block storage synchronize between nodes.  
-And active and standby servers of the cluster are swiched by controlling the Oracle Cloud Infrastructure load balancer from EXPRESSCLUSTER.  
-Client Applications will be accessible instance in the virtual cloud network if you specify Load balancer IP address.  
+In this guide, create 2 nodes (Node1 Node2 as below) mirror disk type cluster.  
+Each node has a block storage and date on both the block storages are synchronize by cluster mirroring feature.  
+EXPRESSCLUSTER uses Oracle Cloud Infrastructure load balancer health check feature and it switches Active node and Standby node when it detects unhealty status.  
+Client can access to Applications on Active node in the virtual cloud network by specifying Load balancer IP address.
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/52775132/62447475-68a7f980-b7a0-11e9-9683-19133c4eabdd.png">
@@ -47,8 +46,8 @@ Client Applications will be accessible instance in the virtual cloud network if 
 
 Oracle Cloud setup
 ---
-1. Create Instances
-   - Separate the fault domain by Advanced Options
+1. Create Instances.
+   - Create 2 Instances for cluster nodes with separating the fault domain by Advanced Options
      - Node1
         - availability domain：AD 1 (oIJw:AP-TOKYO-1-AD-1) 
         - fault domain：FAULT-DOMAIN-1
@@ -59,13 +58,14 @@ Oracle Cloud setup
         - fault domain：FAULT-DOMAIN-2
         - public IP address：10.0.0.9
         - private IP address：10.0.10.9
-1. Create Block Volumes
-   - Create Block Volumes of 2 nodes
-1. Attach Block Volumes to instance.
+1. Create Block Volumes.
+   - Create 2 Block Volumes
+1. Attach Block Volumes to each instance.
    - In the case of Linux (It will not be necessary for Windows)
       - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
    - Attach by iscsi command.
-1. Create Load Balancer and set as the below
+1. Create Load Balancer and set as the below.
+   - Create 1 Load Balancer
    - CHOOSE VISIBILITY TYPE : Public
    - CHOOSE NETWORKING : by public subnet
    - Configure Choose Backends
@@ -84,18 +84,18 @@ Oracle Cloud setup
 
 Setup EXPRESSCLUSTER X
 ---
-Other parameters than below, default value is setting.
+Other parameters than the followings, default value are set.
 
-1. Configure the partition for mirror disk
+1. Configure the partitions for mirror disk.
    - In the case of Linux
      - /dev/oracleoci/oraclevdb1：no format (RAW)
-     - /dev/oracleoci/oraclevdb2：format ext4
+     - /dev/oracleoci/oraclevdb2：format with ext4
    - In the case of Windows
      - D:\ ：no format
-     - E:\ ：format NTFS
-1. Install EXPRESSCLUSTER and register license.
-1. In Config mode of the Cluster WebUI, executing Cluster generation wizard.
-1. Configure the Basic Settings and Interconnect.
+     - E:\ ：format with NTFS
+1. Install EXPRESSCLUSTER and register licenses.
+1. In Config mode of the Cluster WebUI, execute Cluster generation wizard.
+1. Configure Basic Settings and add Interconnects.
    - interconnect1
      - Node1：10.0.0.8
      - Node2：10.0.0.9
@@ -104,11 +104,11 @@ Other parameters than below, default value is setting.
      - Node1：10.0.10.8
      - Node2：10.0.10.9
      - MDC：mdc1
-1. Configure the NP Resolution
+1. Add NP Resolution and configure it.
    - Type：Ping
    - Ping Target：10.0.0.1
-1. Configure the Failover Group
-1. Configure the mirror disk resource
+1. Add Failover Group and configuer it.
+1. Add mirror disk resource and configure it.
   - In the case of Linux
     - Details
       - Mirror Partition Device Name：/dev/NMP1
@@ -122,10 +122,10 @@ Other parameters than below, default value is setting.
       - Cluster Partition Drive Letter：D:\
       - Mirror Disk Connect：mdc1
       - Servers that can run the group：Node1, Node2
-1. Configure the Azure probe port resource
+1. Add Azure probe port resource and configuer it.
    - Details
      - Probeport：26001
-1. Configure the custom monitor resource
+1. Add custom monitor resource and configure it.
    - Info
       - Name : genw1
    - Monitor(special)
@@ -145,7 +145,7 @@ Other parameters than below, default value is setting.
       - Recovery Action : Execute only the final action
       - Recevery Target : LocalServer
       - Final Action: No operation
-1. Configure the IP monitor resource (1st)
+1. Add IP monitor resource and configure it.
    - Info
       - Name : ipw1
    - Monitor(common)
@@ -157,7 +157,7 @@ Other parameters than below, default value is setting.
       - Recovery Action : Execute only the final action
       - Recevery Target : LocalServer
       - Final Action: No operation
-1. Configure the IP monitor resource (2nd)
+1. Add one more IP monitor resource and configure it.
    - Info
       - Name : ipw2
    - Monitor(common)
@@ -169,7 +169,7 @@ Other parameters than below, default value is setting.
       - Recovery Action : Execute only the final action
       - Recevery Target : LocalServer
       - Final Action: No operation
-1. Configure the multi target monitor resource
+1. Add multi target monitor resource and configure it.
    - Monitor(common)
       - add genw1, ipw1, and ipw2
    - Monitor(special)
@@ -224,7 +224,7 @@ Other parameters than below, default value is setting.
                   EXIT 0
                ```
          - Timeout : 15 sec
-1. The following that monitor resource is automatically registered when setting group resouces.
+1. Confirm that the following monitor resources are added automatically when adding the above group resouces.
    - In the case of Linux
      - mirror disk connect monitor resource
      - mirror disk monitor resource
@@ -236,7 +236,7 @@ Other parameters than below, default value is setting.
      - Azure probe port monitor resource
      - Azure load balance monitor resource
 
-1. Configure the Cluster Properties
+1. Configure Cluster Properties
    - Timeout
        - HeartBeat
             - Timeout : 120 sec ( over as below sum(A, B, C) value )
@@ -244,7 +244,7 @@ Other parameters than below, default value is setting.
                      (select the most largest value)  
                - B : mtw's Interval * (Retry Count - 1)
                - C : 30 sec
-1. In Config mode of the Cluster WebUI, executing Apply the Configuration File.
+1. In Config mode of the Cluster WebUI, execute Apply the Configuration File.
 
 Check the operation for EXPRESSCLUSTER X
 ---
