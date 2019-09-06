@@ -3,17 +3,16 @@ Oracle Cloud Infrastructure (by internal load balancer)
 
 About this guide
 ---
-This guide describes how to setup EXPRESSCLUSTER X of the mirror disk type cluster on Oracle Cloud Infrastructure.  
-The following describes the cluster configuration by internal load balancer.  
+This guide describes how to setup EXPRESSCLUSTER X mirror disk type cluster on Oracle Cloud Infrastructure with internal load balancer.
 For the detailed information of EXPRESSCLUSTER X, please refer to [this site](https://www.nec.com/en/global/prod/expresscluster/index.html).  
 
 Configuration
 ---
 ### Overview
-In the configuration of this guide, create 2-server(Node1 Node2 as below) cluster of mirror disk type.  
-And the date on block storage synchronize between nodes.  
-And active and standby servers of the cluster are swiched by controlling the Oracle Cloud Infrastructure load balancer from EXPRESSCLUSTER.  
-Client Applications will be accessible instance in the virtual cloud network if you specify Load balancer IP address.  
+In this guide, create 2 nodes (Node1 Node2 as below) mirror disk type cluster.  
+Each node has a block storage and date on both the block storages are synchronize by cluster mirroring feature.  
+EXPRESSCLUSTER uses Oracle Cloud Infrastructure load balancer health check feature and it switches Active node and Standby node when it detects unhealty status.  
+Client can access to Applications on Active node in the virtual cloud network by specifying Load balancer IP address.  
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/52775132/62447428-4c0bc180-b7a0-11e9-92c6-a95233739474.png">
@@ -46,7 +45,7 @@ Client Applications will be accessible instance in the virtual cloud network if 
 Oracle Cloud setup
 ---
 1. Create Instances
-   - Separate the fault domain by Advanced Options
+   - Create 2 Instances for cluster nodes with separating the fault domain by Advanced Options
      - Node1
         - availability domain：AD 1 (oIJw:AP-TOKYO-1-AD-1) 
         - fault domain：FAULT-DOMAIN-1
@@ -58,12 +57,13 @@ Oracle Cloud setup
         - public IP address：10.0.0.9
         - private IP address：10.0.10.9
 1. Create Block Volumes
-   - Create Block Volumes of 2 nodes
-1. Attach Block Volumes to instance.
+   - Create 2 Block Volumes
+1. Attach Block Volumes to each instance.
    - In the case of Linux (It will not be necessary for Windows)
      - Select DEVICE PATH(/dev/oracleoci/oraclevdb).
    - Attach by iscsi command.
-1. Create Load Balancer
+1. Create a Load Balancer
+   - Create 1 Load Balancer	
    - CHOOSE VISIBILITY TYPE : Private	
    - Skip "Choose Backends"
    - Configure the Update Health Check
@@ -76,7 +76,7 @@ Oracle Cloud setup
      - PROTOCOL：TCP
      - PORT：80
 1. Add the Backends to Load Balancer
-   - Add the Backends that specifying the cluster node ip address before configure the Load Balancer
+   - Add the Backends which specifying the cluster node ip address before configuring the Load Balancer
      - Choose how to add backend servers by selecting compute instances or by entering IP addresses.：IP ADDRESSES
      - Node1
        - IPAddress：10.0.10.8
@@ -87,18 +87,18 @@ Oracle Cloud setup
 
 Setup EXPRESSCLUSTER X
 ---
-Other parameters than below, default value is setting.
+Other parameters than the below, default values are set.
 
-1. Configure the partition for mirror disk
+1. Configure the partitions for mirror disk.
    - In the case of Linux
      - /dev/oracleoci/oraclevdb1：no format (RAW)
-     - /dev/oracleoci/oraclevdb2：format ext4
+     - /dev/oracleoci/oraclevdb2：format with ext4
    - In the case of Windows
      - D:\ ：no format
-     - E:\ ：format NTFS
-1. Install EXPRESSCLUSTER and register license.
-1. In Config mode of the Cluster WebUI, executing Cluster generation wizard.
-1. Configure the Basic Settings and Interconnect.
+     - E:\ ：format with NTFS
+1. Install EXPRESSCLUSTER and register licenses.
+1. In Config mode of Cluster WebUI, execute Cluster generation wizard.
+1. Configure Basic Settings and Interconnect.
    - interconnect1
      - Node1：10.0.0.8
      - Node2：10.0.0.9
@@ -107,11 +107,11 @@ Other parameters than below, default value is setting.
      - Node1：10.0.10.8
      - Node2：10.0.10.9
      - MDC：mdc1
-1. Configure the NP Resolution
+1. Configure NP Resolution.
    - Type：Ping
    - Ping Target：10.0.0.1
-1. Configure the Failover Group
-1. Configure the mirror disk resource
+1. Add Failover Group and configure it.
+1. Add mirror disk resource and configure it.
   - In the case of Linux
     - Details
       - Mirror Partition Device Name：/dev/NMP1
@@ -125,11 +125,11 @@ Other parameters than below, default value is setting.
       - Cluster Partition Drive Letter：D:\
       - Mirror Disk Connect：mdc1
       - Servers that can run the group：Node1, Node2
-1. Configure the Azure probe port resource
+1. Add Azure probe port resource and configure it.
    - Details
      - Probeport：26001
-1. Configure the monitor resources
-   - The following that monitor resource is automatically registered when setting group resouces.
+1. Confirm that monitor resources are added.
+   - The following monitor resources are automatically added when setting failover group resouces.
    - In the case of Linux
      - mirror disk connect monitor resource
      - mirror disk monitor resource
@@ -140,7 +140,7 @@ Other parameters than below, default value is setting.
      - mirror disk monitor resource
      - Azure probe port monitor resource
      - Azure load balance monitor resource
-1. In Config mode of the Cluster WebUI, executing Apply the Configuration File.
+1. In Config mode of Cluster WebUI, execute Apply the Configuration File.
 
 Check the operation for EXPRESSCLUSTER X
 ---
