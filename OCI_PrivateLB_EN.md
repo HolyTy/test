@@ -11,7 +11,7 @@ Configuration
 ### Overview
 In this guide, create 2 nodes (Node1 Node2 as below) mirror disk type cluster.  
 Each node has a block storage and date on both the block storages are synchronize by cluster mirroring feature.  
-EXPRESSCLUSTER uses Oracle Cloud Infrastructure load balancer health check feature and it switches Active node and Standby node when it detects unhealty status.  
+EXPRESSCLUSTER uses Oracle Cloud Infrastructure load balancer health check feature and it switches Active node and Standby node when it detects unhealthy status.  
 Client can access to Applications on Active node in the virtual cloud network by specifying Load balancer IP address.  
 
 <div align="center">
@@ -129,7 +129,7 @@ Other parameters than the below, default values are set.
    - Details
      - Probeport：26001
 1. Confirm that monitor resources are added.
-   - The following monitor resources are automatically added when setting failover group resouces.
+   - The following monitor resources are automatically added when setting failover group resources.
    - In the case of Linux
      - mirror disk connect monitor resource
      - mirror disk monitor resource
