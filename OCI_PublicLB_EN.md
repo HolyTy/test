@@ -11,7 +11,7 @@ Configuration
 ### Overview
 In this guide, create 2 nodes (Node1 Node2 as below) mirror disk type cluster.  
 Each node has a block storage and date on both the block storages are synchronize by cluster mirroring feature.  
-EXPRESSCLUSTER uses Oracle Cloud Infrastructure load balancer health check feature and it switches Active node and Standby node when it detects unhealty status.  
+EXPRESSCLUSTER uses Oracle Cloud Infrastructure load balancer health check feature and it switches Active node and Standby node when it detects unhealthy status.  
 Client can access to Applications on Active node in the virtual cloud network by specifying Load balancer IP address.
 
 <div align="center">
@@ -107,7 +107,7 @@ Other parameters than the followings, default value are set.
 1. Add NP Resolution and configure it.
    - Type：Ping
    - Ping Target：10.0.0.1
-1. Add Failover Group and configuer it.
+1. Add Failover Group and configure it.
 1. Add mirror disk resource and configure it.
   - In the case of Linux
     - Details
@@ -122,7 +122,7 @@ Other parameters than the followings, default value are set.
       - Cluster Partition Drive Letter：D:\
       - Mirror Disk Connect：mdc1
       - Servers that can run the group：Node1, Node2
-1. Add Azure probe port resource and configuer it.
+1. Add Azure probe port resource and configure it.
    - Details
      - Probeport：26001
 1. Add custom monitor resource and configure it.
@@ -143,7 +143,7 @@ Other parameters than the followings, default value are set.
             ```
    - Recovery Action
       - Recovery Action : Execute only the final action
-      - Recevery Target : LocalServer
+      - Recovery Target : LocalServer
       - Final Action: No operation
 1. Add IP monitor resource and configure it.
    - Info
@@ -155,7 +155,7 @@ Other parameters than the followings, default value are set.
       - push the "Add" and enter the Node2's IP address (10.0.10.9)
    - Recovery Action
       - Recovery Action : Execute only the final action
-      - Recevery Target : LocalServer
+      - Recovery Target : LocalServer
       - Final Action: No operation
 1. Add one more IP monitor resource and configure it.
    - Info
@@ -167,7 +167,7 @@ Other parameters than the followings, default value are set.
       - push the "Add" and enter the Node1's IP address (10.0.10.8)
    - Recovery Action
       - Recovery Action : Execute only the final action
-      - Recevery Target : LocalServer
+      - Recovery Target : LocalServer
       - Final Action: No operation
 1. Add multi target monitor resource and configure it.
    - Monitor(common)
@@ -175,7 +175,7 @@ Other parameters than the followings, default value are set.
    - Monitor(special)
    - Recovery Action
       - Recovery Action : Execute only the final action
-      - Recevery Target : LocalServer
+      - Recovery Target : LocalServer
       - Execute Script before Final Action : On
       - Final Action: No operation
       - Script Settings
@@ -224,7 +224,7 @@ Other parameters than the followings, default value are set.
                   EXIT 0
                ```
          - Timeout : 15 sec
-1. Confirm that the following monitor resources are added automatically when adding the above group resouces.
+1. Confirm that the following monitor resources are added automatically when adding the above group resources.
    - In the case of Linux
      - mirror disk connect monitor resource
      - mirror disk monitor resource
